@@ -1,0 +1,13 @@
+perfects = [6, 28, 496, 8128, 33550336, 8589869056, 137438691328, 2305843008139952128,
+            2658455991569831744654692615953842176, ] # FOUND ON INTERNET BY SEARCHING FOR PERFECT NUMBERS
+
+sm = 0
+mod = 10 ** 9 + 7
+for i in perfects:
+    if i < 5 * 10 ** 35:
+        sm += i
+print(sm % mod)
+
+# ANSWER IS 61169540
+
+
