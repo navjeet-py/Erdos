@@ -1,6 +1,7 @@
 # Erdos
 
 Erdos-SDSLabs solutions using Python (Mostly)
+Erdos Portal - https://erdos.sdslabs.co/
 
 
 ## Checklist
