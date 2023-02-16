@@ -1,17 +1,15 @@
-F = [1, 1]
+
 
 mod = 10 ** 8
-
-st = set()
-
-for i in range(10 ** 8):
-    x = F[-1] + F[-2]
-    if x in st:
-        print(x, i)
-    st.add(x)
-
-    if i % (10 ** 7) == 0:
+a, b = 0, 1
+for i in range(10 ** 10):
+    if a == 1 and b == 1 and i > 10:
         print(i)
-    F.append((F[-1] + F[-2]) % mod)
+        break
+    a, b = b, (a + b) % mod
 
-print('DONE')
+"""
+Ran this code in c++. Got the result in 2-3 seconds.
+"""
+
+# Answer is 150000000

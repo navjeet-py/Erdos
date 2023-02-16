@@ -1,37 +1,37 @@
-N = 10 ** 9
+from bisect import bisect
 
-prime = [True for i in range(N + 1)]
+def prime_sieve(n):
+    """
+    Efficient prime sieve, due to Robert William Hanks.
+    Source: http://stackoverflow.com/a/2068548
+    """
+    sieve = [True] * (n//2)
+    print('1')
+    for i in range(3,int(n**0.5)+1,2):
+        print(i)
+        if sieve[i//2]:
+            sieve[i*i//2::i] = [False] * ((n-i*i-1)//(2*i)+1)
+    return [2] + [2*i+1 for i in range(1,n//2) if sieve[i]]
 
-def sm_of_digit(n):
-    return sum(list(map(int, str(n).strip())))
+"""
+Limit controls the number of primes that are sieved
+to cache small values of pi(x).  Wthout caching,
+runtime will be exponential.
+When computing pi(x), limit should be
+at least sqrt(x).  A higher value of limit
+that caches more values can sometimes improve performance.
+"""
 
-def sieve(n):
-    p = 2
-    while (p * p <= n):
+limit = 10**9
+primes = prime_sieve(limit)
 
-        if (prime[p] == True):
+def sum_of_digit(x):
+    return sum(map(int, list(str(x).strip())))
 
-            for i in range(p * p, n + 1, p):
-                prime[i] = False
-        p += 1
-        # if p < 1000 :
-        #     print(p)
+ans = 0
+for x in primes:
+    ans += sum_of_digit(x)
+print(ans)
 
-
-print("SIEVE START")
-sieve(N)
-print("SIEVE DONE")
-
-
-sm = 0
-for i in range(10**9):
-    if i % 10000000 == 0: print(str(i // 10000000) + "% done")
-
-    if prime[i]:
-        sm += sm_of_digit(i)
-print(sm)
-
-
-
-# print(sm_of_digit(19834))
-# print(sm_of_digit(341003))
+# RUNS IN <3 minutes
+# ANSWER IS 2076414728
